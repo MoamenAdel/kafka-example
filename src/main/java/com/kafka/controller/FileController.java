@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kafka.service.FileService;
 
 @RestController
-@RequestMapping("file")
+@RequestMapping("files")
 public final class FileController {
 	private final FileService fileService;
 
