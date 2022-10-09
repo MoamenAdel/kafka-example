@@ -2,6 +2,9 @@ package com.kafka.kafkaexample;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.io.File;
+import java.io.FileInputStream;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,13 +21,11 @@ class KafkaExampleApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	String documentRoot = "";
-
 	@Test
 	public void test_handleFileUpload() throws Exception {
-		String fileName = "test.csv";
-		MockMultipartFile sampleFile = new MockMultipartFile("file", fileName, "text/plain",
-				"This is the file content".getBytes());
+		String filePath = "D:/test.csv";
+		MockMultipartFile sampleFile = new MockMultipartFile("file", filePath, "text/plain",
+				new FileInputStream(new File(filePath)));
 
 		MockMultipartHttpServletRequestBuilder multipartRequest = MockMvcRequestBuilders.multipart("/files/upload");
 
